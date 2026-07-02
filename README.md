@@ -16,15 +16,6 @@ stack" through-line map, range/timeline, and contact.
 
 [![Home page](assets/screenshots/home.png)](index.html)
 
----
-
-## Photography — `photography.html`
-
-Wildlife collection — a grid of multi-frame Instagram posts with species titles and
-field notes. (Plates render as lettered fallbacks until exports are dropped into
-[`photos/`](photos/README.md).)
-
-[![Photography page](assets/screenshots/photography.png)](photography.html)
 
 ---
 
@@ -88,6 +79,14 @@ python3 -m http.server 8000
 
 The captures were produced with Playwright (Chromium, full-page, 2× DPI). Re-run after
 any visual change so this README stays current.
+
+---
+
+
+## Photography — `photography.html`
+
+Wildlife collection — a grid of multi-frame Instagram posts with species titles and
+field notes. 
 
 ---
 
