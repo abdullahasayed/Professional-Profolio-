@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIVE — a self-hosted AI second brain · Abdullah Sayed</title>
+<meta name="description" content="HIVE: a private, retrieval-augmented knowledge assistant built for HoneyBridge. n8n, Qdrant, Ollama, Docling, PostgreSQL, Docker Compose.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,8 88,29 88,71 50,92 12,71 12,29' fill='none' stroke='%23b45309' stroke-width='8'/></svg>">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="../index.html"><b>AS</b> · abdullah sayed</a>
+    <div class="nav-links">
+      <a href="../index.html#work">← All work</a>
+      <a href="../photography.html">Photography</a>
+      <a class="gh" href="https://github.com/abdullahasayed/honeybridge-ai-stack" target="_blank" rel="noopener">repo ↗</a>
+    </div>
+  </div>
+</nav>
+
+<header class="p-hero">
+  <div class="wrap">
+    <p class="kicker">Project 01 · In production at HoneyBridge</p>
+    <h1>HIVE</h1>
+    <p class="lede">
+      A self-hosted AI <b>"second brain"</b> — a private, retrieval-augmented knowledge assistant
+      that turns an organization's internal documents into a searchable knowledge base its team
+      queries in plain language. Documents, embeddings, and inference <b>never leave the host</b>.
+    </p>
+
+    <div class="meta-band reveal">
+      <div class="meta-cell"><div class="k">Role</div><div class="v">Architect &amp; sole engineer</div></div>
+      <div class="meta-cell"><div class="k">Stack</div><div class="v">n8n · Qdrant · Ollama · Docling · PostgreSQL · Docker Compose</div></div>
+      <div class="meta-cell"><div class="k">Client</div><div class="v">HoneyBridge, an SEO &amp; design studio</div></div>
+      <div class="meta-cell"><div class="k">Source</div><div class="v"><a href="https://github.com/abdullahasayed/honeybridge-ai-stack" target="_blank" rel="noopener">honeybridge-ai-stack</a> · Apache-2.0</div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="facts">
+      <div class="fact reveal"><div class="fig">+150%</div><div class="cap">increase in weekly hours of employee usage over 12 weeks of development</div></div>
+      <div class="fact reveal"><div class="fig">−79%</div><div class="cap">reduction in companywide AI tooling costs, enabled by the self-hosted stack</div></div>
+      <div class="fact reveal"><div class="fig">100%</div><div class="cap">local: documents, embeddings, and inference all stay on the host machine</div></div>
+    </div>
+
+    <div class="prose reveal">
+      <h2>Why it exists</h2>
+      <p>
+        Small studios accumulate institutional knowledge in scattered files — brand guides, client briefs,
+        process docs — and lose hours re-finding it. HIVE was built as the shared memory HoneyBridge's team
+        queries instead of digging through folders. Because the studio handles client material, the hard
+        constraint was privacy: everything runs on local infrastructure, with no data leaving the building.
+      </p>
+      <p>
+        The assistant answers <b>strictly</b> from the knowledge base, cites its sources, and admits
+        uncertainty instead of guessing — an explicit anti-hallucination posture enforced in the agent's
+        system prompt and retrieval design.
+      </p>
+    </div>
+
+    <figure class="diagram reveal">
+      <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" fill="none" font-family="IBM Plex Mono, monospace">
+        <defs>
+          <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#b45309"/>
+          </marker>
+        </defs>
+        <!-- ingestion lane -->
+        <rect x="10" y="20" width="880" height="120" rx="12" fill="#fdf3e3" opacity="0.55"/>
+        <text x="28" y="44" font-size="10.5" fill="#7c3a06" letter-spacing="2">INGESTION PIPELINE</text>
+        <g font-size="11.5" fill="#17130c">
+          <rect x="28" y="58" width="128" height="58" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="42" y="82">drop docs in</text><text x="42" y="98" fill="#857c69">watched folder</text>
+          <path d="M156 87 L184 87" stroke="#b45309" stroke-width="1.4" marker-end="url(#a1)"/>
+          <rect x="188" y="58" width="128" height="58" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="202" y="82">Docling</text><text x="202" y="98" fill="#857c69">OCR + parse</text>
+          <path d="M316 87 L344 87" stroke="#b45309" stroke-width="1.4" marker-end="url(#a1)"/>
+          <rect x="348" y="58" width="128" height="58" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="362" y="82">recursive</text><text x="362" y="98" fill="#857c69">chunking 700/15</text>
+          <path d="M476 87 L504 87" stroke="#b45309" stroke-width="1.4" marker-end="url(#a1)"/>
+          <rect x="508" y="58" width="148" height="58" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="522" y="82">Ollama embed</text><text x="522" y="98" fill="#857c69">nomic-embed-text</text>
+          <path d="M656 87 L684 87" stroke="#b45309" stroke-width="1.4" marker-end="url(#a1)"/>
+          <rect x="688" y="58" width="180" height="58" rx="8" fill="#fff" stroke="#1e5a8a"/>
+          <text x="702" y="82" font-weight="600">Qdrant</text><text x="702" y="98" fill="#1e5a8a">hivebrain collection</text>
+        </g>
+        <!-- assistant lane -->
+        <rect x="10" y="160" width="880" height="120" rx="12" fill="#e8f1f8" opacity="0.5"/>
+        <text x="28" y="184" font-size="10.5" fill="#1e5a8a" letter-spacing="2">KNOWLEDGE ASSISTANT · HIVE</text>
+        <g font-size="11.5" fill="#17130c">
+          <rect x="28" y="198" width="128" height="58" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="42" y="222">staff question</text><text x="42" y="238" fill="#857c69">chat UI :8080</text>
+          <path d="M156 227 L184 227" stroke="#1e5a8a" stroke-width="1.4" marker-end="url(#a1)"/>
+          <rect x="188" y="198" width="150" height="58" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="202" y="222">HIVE agent</text><text x="202" y="238" fill="#857c69">retrieval-first</text>
+          <!-- retrieve loop up to qdrant -->
+          <path d="M338 214 C 480 200, 640 180, 740 158" stroke="#b45309" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#a1)"/>
+          <text x="472" y="192" font-size="10" fill="#7c3a06">retrieve top-K from hivebrain</text>
+          <path d="M338 240 L 486 240" stroke="#1e5a8a" stroke-width="1.4" marker-end="url(#a1)"/>
+          <rect x="490" y="198" width="150" height="58" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="504" y="222">LLM</text><text x="504" y="238" fill="#857c69">Ollama / OpenAI</text>
+          <path d="M640 227 L 684 227" stroke="#1e5a8a" stroke-width="1.4" marker-end="url(#a1)"/>
+          <rect x="688" y="198" width="180" height="58" rx="8" fill="#fff" stroke="#3d6b4f"/>
+          <text x="702" y="222" font-weight="600">grounded answer</text><text x="702" y="238" fill="#3d6b4f">+ sources + images</text>
+        </g>
+      </svg>
+      <figcaption>Two n8n workflows share one stack: an event-driven ingestion pipeline that builds the <code>hivebrain</code> vector store, and a chat agent that must query it before answering.</figcaption>
+    </figure>
+
+    <div class="prose reveal">
+      <h2>How it works</h2>
+      <h3>Ingestion</h3>
+      <p>
+        A Local File Trigger watches a pending folder. Each dropped document is parsed by Docling —
+        OCR plus structural extraction — into markdown with extracted, referenced images (multimodal).
+        Content is split with a markdown-aware recursive splitter, embedded with
+        <code>nomic-embed-text</code> via Ollama, and upserted into the Qdrant <code>hivebrain</code>
+        collection. Extracted images are rewritten to HTTP URLs and served so the assistant can link to them.
+      </p>
+      <h3>The assistant</h3>
+      <p>
+        Questions from the bundled chat UI reach an AI Agent whose system prompt requires it to query
+        <code>hivebrain</code> (top-K retrieval as a tool) before answering. It returns a grounded response
+        with inline image links and source attribution — and says when the knowledge base has nothing
+        relevant rather than inventing an answer. Chat runs on a local Gemma model via Ollama, with an
+        OpenAI model wired in as a drop-in alternative.
+      </p>
+    </div>
+
+    <ul class="feature-list reveal">
+      <li><b>One-command, hardware-aware deployment.</b> Compose profiles for CPU, NVIDIA, and AMD GPU hosts; workflows import and models pull automatically on first <code>up</code>.</li>
+      <li><b>Cross-platform setup scripts.</b> Idempotent bootstrap for macOS (Homebrew) and Windows (PowerShell + winget) takes a fresh machine to a running stack.</li>
+      <li><b>Operational maturity.</b> Documented backup/restore of the two stateful volumes (PostgreSQL + Qdrant), secrets isolated in a gitignored <code>.env</code>, encryption-key discipline spelled out.</li>
+      <li><b>Extensible by design.</b> A supporting image-processing pipeline runs alongside, and new agents plug into the same stack.</li>
+    </ul>
+
+    <div class="notes reveal">
+      <h3>Engineering notes</h3>
+      <p>
+        Component choices weren't defaults — local vs. hosted LLMs, embedding models, chunking parameters,
+        and containerized services were benchmarked against latency, cost, and accuracy tradeoffs before
+        the stack settled.
+      </p>
+      <p>
+        The 79% tooling-cost reduction comes from replacing per-seat SaaS AI subscriptions with a stack the
+        studio owns; the privacy guarantee is architectural, not contractual.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="pager">
+  <div class="wrap">
+    <a href="../index.html#work"><span class="lbl">Back</span><span class="ttl">All work</span></a>
+    <a class="next" href="code-atlas.html"><span class="lbl">Next project</span><span class="ttl">Code-Atlas →</span></a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Abdullah Sayed</span>
+    <span><a href="https://github.com/abdullahasayed" target="_blank" rel="noopener">github.com/abdullahasayed</a></span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

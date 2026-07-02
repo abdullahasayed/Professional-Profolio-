@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrackRecord — agentic web-intelligence platform · Abdullah Sayed</title>
+<meta name="description" content="TrackRecord (webintel): an AI-assisted web & social-media intelligence platform with an agentic plan→collect→analyze→synthesize loop. Zero-credential by design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,8 88,29 88,71 50,92 12,71 12,29' fill='none' stroke='%23b45309' stroke-width='8'/></svg>">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="../index.html"><b>AS</b> · abdullah sayed</a>
+    <div class="nav-links">
+      <a href="../index.html#work">← All work</a>
+      <a href="../photography.html">Photography</a>
+      <a class="gh" href="https://github.com/abdullahasayed/TrackRecord" target="_blank" rel="noopener">repo ↗</a>
+    </div>
+  </div>
+</nav>
+
+<header class="p-hero">
+  <div class="wrap">
+    <p class="kicker">Project 03 · Applied NLP &amp; agents</p>
+    <h1>TrackRecord</h1>
+    <p class="lede">
+      A modular, AI-assisted <b>web &amp; social-media intelligence platform</b>. Give it a broad goal —
+      <i>"track sentiment about X after event Y"</i> — and an agentic loop turns it into a
+      plan → collect → analyze → synthesize run that emits real reports, charts, and alerts,
+      plus a filterable dashboard.
+    </p>
+
+    <div class="meta-band reveal">
+      <div class="meta-cell"><div class="k">Role</div><div class="v">Designer &amp; sole engineer</div></div>
+      <div class="meta-cell"><div class="k">Stack</div><div class="v">Python · SQLite + FTS5 · Chroma · Streamlit · local NLP models</div></div>
+      <div class="meta-cell"><div class="k">Design principle</div><div class="v">Zero-credential: builds, tests, and demos run fully offline</div></div>
+      <div class="meta-cell"><div class="k">Source</div><div class="v"><a href="https://github.com/abdullahasayed/TrackRecord" target="_blank" rel="noopener">TrackRecord</a></div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="facts">
+      <div class="fact reveal"><div class="fig">53</div><div class="cap">unit, integration, and e2e tests — the e2e suite runs with network sockets blocked</div></div>
+      <div class="fact reveal"><div class="fig">9</div><div class="cap">analysis modules: sentiment, stance, NER, keywords, topics, trends, anomalies, narratives, taxonomy</div></div>
+      <div class="fact reveal"><div class="fig">0</div><div class="cap">API keys, accounts, or paid services needed to build, test, and demo the entire platform</div></div>
+    </div>
+
+    <div class="prose reveal">
+      <h2>Why it exists</h2>
+      <p>
+        Understanding how public discussion moves around an event — a product recall, a policy announcement,
+        a campaign — usually means stitching together scrapers, notebooks, and dashboards by hand.
+        TrackRecord makes that a single command: it collects public discussion from many source types,
+        normalizes everything into one schema, runs a local analysis stack, and synthesizes the results
+        into executive summaries, monitoring reports, and alerts.
+      </p>
+      <p>
+        It's also an exercise in <b>trustworthy demo engineering</b>: the entire system runs against
+        committed synthetic fixtures with real accuracy/F1 evaluation numbers, so anyone can verify the
+        pipeline end to end before pointing it at live sources.
+      </p>
+    </div>
+
+    <figure class="diagram reveal">
+      <svg viewBox="0 0 900 330" xmlns="http://www.w3.org/2000/svg" fill="none" font-family="IBM Plex Mono, monospace">
+        <defs>
+          <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#b45309"/>
+          </marker>
+        </defs>
+        <text x="20" y="30" font-size="10.5" fill="#7c3a06" letter-spacing="2">AGENTIC LOOP — GOAL TO REPORT</text>
+        <g font-size="11.5" fill="#17130c">
+          <rect x="20" y="48" width="150" height="56" rx="8" fill="#fdf3e3" stroke="#b45309"/>
+          <text x="36" y="72" font-weight="600">goal</text><text x="36" y="88" fill="#7c3a06">"track sentiment…"</text>
+          <path d="M170 76 L198 76" stroke="#b45309" stroke-width="1.4" marker-end="url(#a3)"/>
+          <rect x="202" y="48" width="150" height="56" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="218" y="72">planner</text><text x="218" y="88" fill="#857c69">target · mode · queries</text>
+          <path d="M352 76 L380 76" stroke="#b45309" stroke-width="1.4" marker-end="url(#a3)"/>
+          <rect x="384" y="48" width="150" height="56" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="400" y="72">agent loop</text><text x="400" y="88" fill="#857c69">retry · error budget</text>
+          <!-- fan out to connectors -->
+          <path d="M459 104 L459 132" stroke="#1e5a8a" stroke-width="1.3" marker-end="url(#a3)"/>
+          <rect x="330" y="136" width="258" height="52" rx="8" fill="#e8f1f8" stroke="#1e5a8a" opacity="0.9"/>
+          <text x="346" y="158" fill="#1e5a8a">connectors: rss · newsapi · reddit</text>
+          <text x="346" y="174" fill="#1e5a8a">web · search — registry pattern</text>
+          <path d="M459 188 L459 216" stroke="#1e5a8a" stroke-width="1.3" marker-end="url(#a3)"/>
+          <rect x="330" y="220" width="258" height="52" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="346" y="242">pipeline: clean → dedupe → langdetect</text>
+          <text x="346" y="258" fill="#857c69">SQLite + FTS5 · vector store</text>
+          <!-- analysis -->
+          <path d="M588 246 L622 246" stroke="#b45309" stroke-width="1.4" marker-end="url(#a3)"/>
+          <rect x="626" y="220" width="250" height="52" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="642" y="242">analysis: sentiment · stance · NER</text>
+          <text x="642" y="258" fill="#857c69">topics · trends · anomalies · narratives</text>
+          <!-- synthesize up -->
+          <path d="M751 220 L751 130" stroke="#b45309" stroke-width="1.4" marker-end="url(#a3)"/>
+          <rect x="626" y="70" width="250" height="56" rx="8" fill="#fff" stroke="#3d6b4f"/>
+          <text x="642" y="94" font-weight="600">synthesize &amp; report</text>
+          <text x="642" y="110" fill="#3d6b4f">markdown · PNG charts · CSV · alerts</text>
+        </g>
+        <text x="20" y="316" font-size="10.5" fill="#857c69">every run writes a manifest: plan, steps, and the requests/pages/tokens a live run would spend</text>
+      </svg>
+      <figcaption>The agentic loop: a deterministic local planner (optional LLM path, off by default) drives connectors, the ingestion pipeline, nine analysis modules, and reporting.</figcaption>
+    </figure>
+
+    <div class="prose reveal">
+      <h2>Distinctions the analysis layer refuses to blur</h2>
+      <h3>Tone is not stance</h3>
+      <p>
+        VADER measures how a text <i>sounds</i>; the stance module scores the author's <i>position toward
+        the target</i>. "This recall is blown out of proportion — Aurora handled it responsibly" is negative
+        in tone but <b>supports</b> Aurora. TrackRecord computes, stores, and reports both separately —
+        a distinction most sentiment dashboards silently collapse.
+      </p>
+      <h3>Topics are not narratives</h3>
+      <p>
+        Topics answer "what is discussed." Narratives follow each topic week over week and label it
+        emerging, fading, burst, or steady — turning a static snapshot into a story with direction.
+      </p>
+    </div>
+
+    <ul class="feature-list reveal">
+      <li><b>Real evaluation, not vibes.</b> <code>webintel eval</code> reports accuracy/F1 of the analysis modules against committed ground truth; demo runs write the numbers to <code>eval.json</code>.</li>
+      <li><b>Pluggable connectors.</b> Subclass <code>BaseConnector</code>, decorate with <code>@register</code>, normalize into <code>Item</code>, drop a fixture — the core never changes.</li>
+      <li><b>Polite by default when live.</b> Rate-limited to 30 req/min with exponential backoff, robots.txt-aware, custom User-Agent; run manifests account for every request before you scale up.</li>
+      <li><b>Full CLI surface:</b> <code>run</code>, <code>ingest</code>, <code>analyze</code>, <code>eval</code>, <code>search</code> (FTS5), <code>schedule</code> for recurring monitoring, and deterministic fixture regeneration.</li>
+    </ul>
+
+    <div class="notes reveal">
+      <h3>Engineering notes</h3>
+      <p>
+        Offline fixtures and live fetching share the same parsing code — the demo isn't a mock of the
+        system, it <i>is</i> the system pointed at committed data. Live mode is a documented, user-initiated
+        step, keyless where possible.
+      </p>
+      <p>
+        The optional LLM planner path improves planning on vague goals, but the deterministic local planner
+        handles everything without it — an availability-first posture unusual in agent frameworks.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="pager">
+  <div class="wrap">
+    <a href="code-atlas.html"><span class="lbl">Previous</span><span class="ttl">← Code-Atlas</span></a>
+    <a class="next" href="oci-cluster-evaluation.html"><span class="lbl">Next project</span><span class="ttl">OCI Cluster Evaluation →</span></a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Abdullah Sayed</span>
+    <span><a href="https://github.com/abdullahasayed" target="_blank" rel="noopener">github.com/abdullahasayed</a></span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdullah Sayed — AI Engineer</title>
+<meta name="description" content="Abdullah Sayed builds AI systems end to end — from validating the GPU clusters they train on to the retrieval pipelines and tools that make them useful.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,8 88,29 88,71 50,92 12,71 12,29' fill='none' stroke='%23b45309' stroke-width='8'/></svg>">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="index.html"><b>AS</b> · abdullah sayed</a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#throughline">Through-line</a>
+      <a href="#range">Range</a>
+      <a href="photography.html">Photography</a>
+      <a href="#contact">Contact</a>
+      <a class="gh" href="https://github.com/abdullahasayed" target="_blank" rel="noopener">github ↗</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <svg class="hero-art" viewBox="0 0 460 520" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- flowing signal lines -->
+    <path d="M20 470 C 120 430, 100 330, 210 300 S 380 210, 420 120" stroke="#e5e0d2" stroke-width="1.5"/>
+    <path d="M40 490 C 150 460, 130 340, 240 310 S 400 230, 440 140" stroke="#e5e0d2" stroke-width="1.5"/>
+    <path d="M0 450 C 100 400, 90 320, 190 285 S 360 190, 400 100" stroke="#cfc8b4" stroke-width="1.5"/>
+    <!-- hexagon lattice -->
+    <g stroke="#b45309" stroke-width="1.6" fill="none">
+      <polygon points="300,120 340,143 340,189 300,212 260,189 260,143"/>
+      <polygon points="380,166 420,189 420,235 380,258 340,235 340,189" opacity="0.65"/>
+      <polygon points="300,212 340,235 340,281 300,304 260,281 260,235" opacity="0.4"/>
+    </g>
+    <!-- nodes -->
+    <g fill="#1e5a8a">
+      <circle cx="190" cy="285" r="5"/>
+      <circle cx="240" cy="310" r="4" opacity="0.7"/>
+      <circle cx="210" cy="300" r="3.5" opacity="0.5"/>
+    </g>
+    <g fill="#b45309">
+      <circle cx="300" cy="120" r="4.5"/>
+      <circle cx="420" cy="235" r="4"/>
+      <circle cx="260" cy="281" r="3.5"/>
+    </g>
+    <!-- connection strokes node->hex -->
+    <path d="M190 285 L260 235" stroke="#1e5a8a" stroke-width="1.2" stroke-dasharray="3 5"/>
+    <path d="M240 310 L260 281" stroke="#1e5a8a" stroke-width="1.2" stroke-dasharray="3 5"/>
+    <!-- fine grid fragment -->
+    <g stroke="#e5e0d2" stroke-width="1">
+      <line x1="60" y1="80" x2="180" y2="80"/><line x1="60" y1="110" x2="180" y2="110"/>
+      <line x1="60" y1="140" x2="180" y2="140"/><line x1="90" y1="50" x2="90" y2="170"/>
+      <line x1="120" y1="50" x2="120" y2="170"/><line x1="150" y1="50" x2="150" y2="170"/>
+    </g>
+    <circle cx="120" cy="110" r="3.5" fill="#b45309"/>
+  </svg>
+
+  <div class="wrap">
+    <p class="kicker">AI Engineer · Dallas–Fort Worth, TX</p>
+    <h1 class="display">Systems that think,<br>built <em>from the metal up.</em></h1>
+    <p class="hero-sub">
+      I'm Abdullah Sayed. I build AI systems end to end — from validating the GPU
+      clusters they train on to the retrieval pipelines and interfaces that make
+      them worth using.
+    </p>
+    <div class="hero-facts">
+      <span><b>HoneyBridge</b>AI Engineer &amp; Digital Solutions Architect</span>
+      <span><b>Boston College '24</b>Political Science + Computer Science</span>
+      <span><b>5 featured builds</b>infrastructure → platforms → tools</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ WORK ============ -->
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">01</span>
+      <h2>Selected work</h2>
+      <span class="rule"></span>
+    </div>
+
+    <div class="cards">
+
+      <a class="card wide reveal" href="projects/hive.html">
+        <div class="card-top">
+          <div>
+            <div class="card-index">PROJECT 01 — IN PRODUCTION</div>
+            <h3>HIVE</h3>
+            <div class="card-role">a self-hosted AI second brain</div>
+            <p>A private RAG knowledge assistant for HoneyBridge, an SEO &amp; design studio.
+               Documents, embeddings, and inference never leave the host; answers are cited or declined.
+               Twelve weeks in: <b>+150% weekly usage, −79% AI tooling costs</b>.</p>
+          </div>
+          <svg class="card-art" viewBox="0 0 132 96" fill="none" aria-hidden="true">
+            <g stroke="#b45309" stroke-width="1.5" fill="none">
+              <polygon points="66,10 88,22 88,46 66,58 44,46 44,22"/>
+              <polygon points="88,46 110,58 110,82 88,94 66,82 66,58" opacity="0.55"/>
+              <polygon points="44,46 66,58 66,82 44,94 22,82 22,58" opacity="0.35"/>
+            </g>
+            <circle class="pulse" cx="66" cy="34" r="4" fill="#b45309"/>
+            <circle cx="10" cy="30" r="3" fill="#1e5a8a"/>
+            <path d="M13 30 L 44 33" stroke="#1e5a8a" stroke-width="1.2" stroke-dasharray="3 4"/>
+          </svg>
+        </div>
+        <div class="tags">
+          <span class="tag hot">RAG</span><span class="tag">n8n</span><span class="tag">Qdrant</span>
+          <span class="tag">Ollama</span><span class="tag">Docling</span><span class="tag">Docker Compose</span>
+        </div>
+        <span class="card-cta">read the case study</span>
+      </a>
+
+      <a class="card reveal" href="projects/code-atlas.html">
+        <div class="card-top">
+          <div>
+            <div class="card-index">PROJECT 02</div>
+            <h3>Code-Atlas</h3>
+            <div class="card-role">an intelligent codebase visualizer</div>
+            <p>Point it at any repo and glide from architectural map to statement blocks —
+               semantic zoom with grounded, bottom-up explanations.
+               <b>600k-line Django indexed in ~5 s.</b></p>
+          </div>
+          <svg class="card-art" viewBox="0 0 132 96" fill="none" aria-hidden="true">
+            <rect x="14" y="10" width="104" height="76" rx="6" stroke="#cfc8b4" stroke-width="1.4"/>
+            <rect x="28" y="24" width="46" height="48" rx="4" stroke="#1e5a8a" stroke-width="1.4"/>
+            <rect x="38" y="36" width="22" height="22" rx="3" stroke="#b45309" stroke-width="1.4"/>
+            <circle class="pulse" cx="49" cy="47" r="3" fill="#b45309"/>
+            <line x1="74" y1="48" x2="100" y2="48" stroke="#1e5a8a" stroke-width="1.2" stroke-dasharray="3 4"/>
+            <circle cx="103" cy="48" r="3" fill="#1e5a8a"/>
+          </svg>
+        </div>
+        <div class="tags">
+          <span class="tag hot">tree-sitter</span><span class="tag">FastAPI</span><span class="tag">TypeScript</span>
+          <span class="tag">custom SVG canvas</span>
+        </div>
+        <span class="card-cta">explore the atlas</span>
+      </a>
+
+      <a class="card reveal" href="projects/trackrecord.html">
+        <div class="card-top">
+          <div>
+            <div class="card-index">PROJECT 03</div>
+            <h3>TrackRecord</h3>
+            <div class="card-role">agentic web-intelligence platform</div>
+            <p>Turns a broad goal — "track sentiment about X after event Y" — into a
+               plan → collect → analyze → synthesize run with real reports and alerts.
+               <b>Zero-credential: 53 tests, fully offline.</b></p>
+          </div>
+          <svg class="card-art" viewBox="0 0 132 96" fill="none" aria-hidden="true">
+            <path d="M10 60 L34 60 L44 30 L58 78 L70 48 L82 62 L122 62" stroke="#1e5a8a" stroke-width="1.6"/>
+            <path d="M10 74 L46 74 L58 88 L74 66 L122 66" stroke="#cfc8b4" stroke-width="1.4"/>
+            <circle class="pulse" cx="58" cy="78" r="4" fill="#b45309"/>
+            <line x1="58" y1="14" x2="58" y2="78" stroke="#b45309" stroke-width="1" stroke-dasharray="3 4"/>
+            <text x="64" y="20" font-family="monospace" font-size="9" fill="#857c69">event</text>
+          </svg>
+        </div>
+        <div class="tags">
+          <span class="tag hot">agentic loop</span><span class="tag">Python</span><span class="tag">SQLite + FTS5</span>
+          <span class="tag">NLP stack</span><span class="tag">Streamlit</span>
+        </div>
+        <span class="card-cta">follow the signal</span>
+      </a>
+
+      <a class="card reveal" href="projects/oci-cluster-evaluation.html">
+        <div class="card-top">
+          <div>
+            <div class="card-index">PROJECT 04</div>
+            <h3>OCI Cluster Evaluation</h3>
+            <div class="card-role">GPU cluster validation toolkit</div>
+            <p>A playbook validating OCI GPU clusters against SemiAnalysis'
+               <b>ClusterMAX 2.0</b> criteria — baseline audits, storage and WAN smokes,
+               NCCL all-reduce — each leaving an evidence bundle.</p>
+          </div>
+          <svg class="card-art" viewBox="0 0 132 96" fill="none" aria-hidden="true">
+            <g stroke="#cfc8b4" stroke-width="1.3">
+              <rect x="16" y="16" width="22" height="22" rx="3"/><rect x="55" y="16" width="22" height="22" rx="3"/>
+              <rect x="94" y="16" width="22" height="22" rx="3"/><rect x="16" y="58" width="22" height="22" rx="3"/>
+              <rect x="55" y="58" width="22" height="22" rx="3" stroke="#b45309"/>
+              <rect x="94" y="58" width="22" height="22" rx="3"/>
+            </g>
+            <g stroke="#1e5a8a" stroke-width="1.1" stroke-dasharray="3 4">
+              <line x1="38" y1="27" x2="55" y2="27"/><line x1="77" y1="27" x2="94" y2="27"/>
+              <line x1="27" y1="38" x2="27" y2="58"/><line x1="66" y1="38" x2="66" y2="58"/>
+              <line x1="105" y1="38" x2="105" y2="58"/>
+            </g>
+            <circle class="pulse" cx="66" cy="69" r="3.5" fill="#b45309"/>
+          </svg>
+        </div>
+        <div class="tags">
+          <span class="tag hot">ClusterMAX 2.0</span><span class="tag">Shell</span><span class="tag">SLURM</span>
+          <span class="tag">fio · NCCL · Nsight</span>
+        </div>
+        <span class="card-cta">audit the metal</span>
+      </a>
+
+      <a class="card wide reveal" href="projects/ddp-training.html">
+        <div class="card-top">
+          <div>
+            <div class="card-index">PROJECT 05</div>
+            <h3>DDP Training</h3>
+            <div class="card-role">16-GPU distributed training on Kubernetes</div>
+            <p>A PyTorch DDP baseline: fine-tuning a stance classifier across
+               <b>2 nodes × 8 NVIDIA B200s</b> with torchrun on Kubernetes —
+               containerized for CUDA 12.8 / sm_100, runbook included.</p>
+          </div>
+          <svg class="card-art" viewBox="0 0 132 96" fill="none" aria-hidden="true">
+            <g stroke="#cfc8b4" stroke-width="1.3">
+              <line x1="12" y1="22" x2="86" y2="22"/><line x1="12" y1="40" x2="86" y2="40"/>
+              <line x1="12" y1="58" x2="86" y2="58"/><line x1="12" y1="76" x2="86" y2="76"/>
+            </g>
+            <path d="M86 22 C 104 22, 104 49, 116 49 M86 40 C 100 40, 102 49, 116 49 M86 58 C 100 58, 102 49, 116 49 M86 76 C 104 76, 104 49, 116 49" stroke="#1e5a8a" stroke-width="1.2"/>
+            <circle class="pulse" cx="119" cy="49" r="4.5" fill="#b45309"/>
+            <g fill="#1e5a8a"><circle cx="20" cy="22" r="2.5"/><circle cx="34" cy="40" r="2.5"/><circle cx="26" cy="58" r="2.5"/><circle cx="40" cy="76" r="2.5"/></g>
+          </svg>
+        </div>
+        <div class="tags">
+          <span class="tag hot">PyTorch DDP</span><span class="tag">Kubernetes</span><span class="tag">torchrun</span>
+          <span class="tag">NVIDIA B200</span><span class="tag">NCCL</span><span class="tag">Docker buildx</span>
+        </div>
+        <span class="card-cta">scale the training</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ THROUGH-LINE ============ -->
+<section id="throughline" class="throughline">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">02</span>
+      <h2>The through-line</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="big reveal">
+      Five projects, <em>one continuous stack</em>: validate the cluster, train across it,
+      ground a model in private knowledge, point the intelligence at the world —
+      then make the code beneath it all legible.
+    </p>
+
+    <div class="stack-map reveal">
+      <svg viewBox="0 0 960 190" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#b45309"/>
+          </marker>
+        </defs>
+        <!-- baseline -->
+        <line x1="20" y1="150" x2="940" y2="150" stroke="#cfc8b4" stroke-width="1"/>
+        <!-- stages -->
+        <g font-family="IBM Plex Mono, monospace">
+          <!-- stage boxes -->
+          <g>
+            <rect x="24" y="52" width="160" height="64" rx="10" fill="#fff" stroke="#e5e0d2"/>
+            <text x="40" y="78" font-size="12.5" fill="#17130c" font-weight="600">VALIDATE</text>
+            <text x="40" y="98" font-size="11" fill="#857c69">OCI Cluster Eval</text>
+            <line x1="104" y1="116" x2="104" y2="150" stroke="#b45309" stroke-width="1" stroke-dasharray="3 4"/>
+            <circle cx="104" cy="150" r="4" fill="#b45309"/>
+          </g>
+          <path d="M188 84 L212 84" stroke="#b45309" stroke-width="1.4" marker-end="url(#arr)"/>
+          <g>
+            <rect x="216" y="52" width="160" height="64" rx="10" fill="#fff" stroke="#e5e0d2"/>
+            <text x="232" y="78" font-size="12.5" fill="#17130c" font-weight="600">TRAIN</text>
+            <text x="232" y="98" font-size="11" fill="#857c69">DDP · 2×8 GPUs</text>
+            <line x1="296" y1="116" x2="296" y2="150" stroke="#b45309" stroke-width="1" stroke-dasharray="3 4"/>
+            <circle cx="296" cy="150" r="4" fill="#b45309"/>
+          </g>
+          <path d="M380 84 L404 84" stroke="#b45309" stroke-width="1.4" marker-end="url(#arr)"/>
+          <g>
+            <rect x="408" y="52" width="160" height="64" rx="10" fill="#fff" stroke="#e5e0d2"/>
+            <text x="424" y="78" font-size="12.5" fill="#17130c" font-weight="600">GROUND</text>
+            <text x="424" y="98" font-size="11" fill="#857c69">HIVE · private RAG</text>
+            <line x1="488" y1="116" x2="488" y2="150" stroke="#b45309" stroke-width="1" stroke-dasharray="3 4"/>
+            <circle cx="488" cy="150" r="4" fill="#b45309"/>
+          </g>
+          <path d="M572 84 L596 84" stroke="#b45309" stroke-width="1.4" marker-end="url(#arr)"/>
+          <g>
+            <rect x="600" y="52" width="160" height="64" rx="10" fill="#fff" stroke="#e5e0d2"/>
+            <text x="616" y="78" font-size="12.5" fill="#17130c" font-weight="600">OBSERVE</text>
+            <text x="616" y="98" font-size="11" fill="#857c69">TrackRecord</text>
+            <line x1="680" y1="116" x2="680" y2="150" stroke="#b45309" stroke-width="1" stroke-dasharray="3 4"/>
+            <circle cx="680" cy="150" r="4" fill="#b45309"/>
+          </g>
+          <path d="M764 84 L788 84" stroke="#b45309" stroke-width="1.4" marker-end="url(#arr)"/>
+          <g>
+            <rect x="792" y="52" width="148" height="64" rx="10" fill="#fff" stroke="#e5e0d2"/>
+            <text x="808" y="78" font-size="12.5" fill="#17130c" font-weight="600">UNDERSTAND</text>
+            <text x="808" y="98" font-size="11" fill="#857c69">Code-Atlas</text>
+            <line x1="866" y1="116" x2="866" y2="150" stroke="#b45309" stroke-width="1" stroke-dasharray="3 4"/>
+            <circle cx="866" cy="150" r="4" fill="#b45309"/>
+          </g>
+          <!-- labels under baseline -->
+          <text x="24" y="176" font-size="10.5" fill="#857c69" letter-spacing="2">HARDWARE</text>
+          <text x="866" y="176" font-size="10.5" fill="#857c69" letter-spacing="2" text-anchor="end">MEANING</text>
+          <text x="24" y="34" font-size="10.5" fill="#b45309" letter-spacing="2">ONE CONTINUOUS STACK</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RANGE ============ -->
+<section id="range">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">03</span>
+      <h2>Range as an engineering asset</h2>
+      <span class="rule"></span>
+    </div>
+
+    <p class="range-quote reveal">
+      "In an age where narrow technical skills are increasingly easy to automate, my edge is range.
+      I'm as at home designing a RAG pipeline as pipetting GMP drug products — or sitting down with
+      a restaurant owner in a greasy kitchen to explain <em>why a digital tool is worth the cost</em>."
+    </p>
+    <p class="range-attr reveal">— on moving into unfamiliar domains quickly</p>
+
+    <div class="cols" style="margin-top:52px">
+      <div class="col reveal">
+        <span class="col-tag">Applied AI</span>
+        <h4>Retrieval &amp; agents</h4>
+        <p>Grounded, self-hosted RAG with anti-hallucination guardrails; agents that plan, collect, analyze, and report.</p>
+        <ul>
+          <li>RAG · LangChain · vector search</li>
+          <li>Qdrant · Ollama · embeddings</li>
+          <li>n8n orchestration · Docling</li>
+        </ul>
+      </div>
+      <div class="col reveal">
+        <span class="col-tag">Infrastructure</span>
+        <h4>GPU compute</h4>
+        <p>Multi-node cluster evaluation, distributed training, and diagnostics runbooks — held to the criteria analysts actually use.</p>
+        <ul>
+          <li>Kubernetes · SLURM · OCI</li>
+          <li>PyTorch DDP · CUDA · NCCL</li>
+          <li>Docker · Terraform · Linux</li>
+        </ul>
+      </div>
+      <div class="col reveal">
+        <span class="col-tag">Cross-domain</span>
+        <h4>Science &amp; society</h4>
+        <p>Lab bench to political analysis: antibody binding prediction with protein language models; NLP sentiment research at BC.</p>
+        <ul>
+          <li>Python · R · PyTorch · ESM</li>
+          <li>UHPLC · GMP QC · biostatistics</li>
+          <li>Political science + CS (BC '24)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-family: var(--serif); font-size: 24px; font-weight: 550; margin: 72px 0 24px;" class="reveal">The road here</h3>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-when">2026 — now</div>
+        <div class="tl-what">
+          <h4>AI Engineer &amp; Digital Solutions Architect</h4>
+          <div class="where">HoneyBridge · Plano, TX</div>
+          <p>Architected HIVE, the studio's internal AI platform; prototype client-facing builds from website UIs to an interactive 3D menu-visualization app.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">2025 — 2026</div>
+        <div class="tl-what">
+          <h4>GPU Cluster Engineering Consultant</h4>
+          <div class="where">SimpliSolve · Plano, TX</div>
+          <p>Assessed GPU clusters on OCI under SLURM and Kubernetes; built the 16-GPU DDP pipeline; authored procurement research and a diagnostics runbook.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">2024 — 2025</div>
+        <div class="tl-what">
+          <h4>Associate Analyst</h4>
+          <div class="where">STC Biologics · Boston, MA</div>
+          <p>GMP and developmental assays alongside a PyTorch antibody–antigen binding-prediction pipeline built on pretrained protein language models.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">2021 — 2024</div>
+        <div class="tl-what">
+          <h4>B.A. Political Science, minor in Computer Science</h4>
+          <div class="where">Boston College · Chestnut Hill, MA</div>
+          <p>Computational intelligence, systems, and web development coursework; four years leading the Muslim Student Association.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PHOTOGRAPHY TEASER ============ -->
+<section id="photo-teaser" class="throughline" style="padding: 56px 0;">
+  <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:28px; flex-wrap:wrap;">
+    <div>
+      <p class="kicker">Off duty</p>
+      <p class="big" style="margin-top:14px; max-width:620px;">Ospreys, hummingbirds, and quiet places — <em>wildlife, on film and sensor.</em></p>
+    </div>
+    <a class="btn primary" href="photography.html">View the collection →</a>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="kicker reveal" style="justify-content:center">Let's build something</p>
+    <h2 class="reveal">Considerate, analytical,<br>and a hard worker.</h2>
+    <p class="reveal">Open to conversations about applied AI, GPU infrastructure, and everything between.</p>
+    <div class="contact-links reveal">
+      <a class="btn primary" href="mailto:abdullahasayed48@gmail.com">abdullahasayed48@gmail.com</a>
+      <a class="btn ghost" href="https://github.com/abdullahasayed" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/abdullah-sayed-73021519a" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Abdullah Sayed</span>
+    <span>Dallas–Fort Worth, TX · <a href="https://github.com/abdullahasayed" target="_blank" rel="noopener">github.com/abdullahasayed</a></span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

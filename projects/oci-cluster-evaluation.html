@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCI Cluster Evaluation — GPU cluster validation toolkit · Abdullah Sayed</title>
+<meta name="description" content="A playbook and script suite validating OCI GPU clusters against SemiAnalysis ClusterMAX 2.0 criteria — baseline audits, storage/WAN smokes, NCCL, Nsight.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,8 88,29 88,71 50,92 12,71 12,29' fill='none' stroke='%23b45309' stroke-width='8'/></svg>">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="../index.html"><b>AS</b> · abdullah sayed</a>
+    <div class="nav-links">
+      <a href="../index.html#work">← All work</a>
+      <a href="../photography.html">Photography</a>
+      <a class="gh" href="https://github.com/abdullahasayed/OCI-Cluster-Evaluation-" target="_blank" rel="noopener">repo ↗</a>
+    </div>
+  </div>
+</nav>
+
+<header class="p-hero">
+  <div class="wrap">
+    <p class="kicker">Project 04 · GPU infrastructure</p>
+    <h1>OCI Cluster<br>Evaluation</h1>
+    <p class="lede">
+      A <b>cluster validation toolkit</b>: self-authored scripts and a playbook that let a cloud engineer
+      test an OCI GPU cluster against the published criteria industry analysts at
+      <b>SemiAnalysis</b> use for their ClusterMAX 2.0 ratings — and walk away with an evidence bundle,
+      not just terminal output.
+    </p>
+
+    <div class="meta-band reveal">
+      <div class="meta-cell"><div class="k">Role</div><div class="v">Author — built during GPU consulting at SimpliSolve</div></div>
+      <div class="meta-cell"><div class="k">Stack</div><div class="v">Bash · Make · SLURM · fio · NCCL tests · Nsight Compute · CUDA</div></div>
+      <div class="meta-cell"><div class="k">Framework</div><div class="v">SemiAnalysis <a href="https://www.clustermax.ai/" target="_blank" rel="noopener">ClusterMAX 2.0</a> criteria</div></div>
+      <div class="meta-cell"><div class="k">Source</div><div class="v"><a href="https://github.com/abdullahasayed/OCI-Cluster-Evaluation-" target="_blank" rel="noopener">OCI-Cluster-Evaluation</a></div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="prose reveal">
+      <h2>Why it exists</h2>
+      <p>
+        SemiAnalysis' ratings of GPU cloud offerings have become a de facto industry gold standard —
+        strong enough that heavyweights like Oracle pay attention. Much of the criteria behind ClusterMAX
+        is published plainly, yet actually <i>running</i> those tests on your own cluster still demands
+        senior-engineer intuition scattered across a dozen tools.
+      </p>
+      <p>
+        This project turns that criteria into a playbook. The goal: even a novice cloud engineer can get
+        robust, industry-recognizable feedback on their cluster's particulars — while senior engineers get
+        a fast suite that highlights weaknesses in metrics the whole industry recognizes.
+      </p>
+    </div>
+
+    <figure class="diagram reveal">
+      <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" fill="none" font-family="IBM Plex Mono, monospace">
+        <defs>
+          <marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#b45309"/>
+          </marker>
+        </defs>
+        <text x="20" y="30" font-size="10.5" fill="#7c3a06" letter-spacing="2">VALIDATION LADDER — SAFE TO RISKY, LAPTOP TO 16 GPUS</text>
+        <!-- rungs -->
+        <g font-size="11.5" fill="#17130c">
+          <rect x="20" y="52" width="196" height="62" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="36" y="76" font-weight="600">make test</text>
+          <text x="36" y="94" fill="#857c69">repo sanity · runs anywhere</text>
+
+          <path d="M216 83 L242 83" stroke="#b45309" stroke-width="1.4" marker-end="url(#a4)"/>
+          <rect x="246" y="52" width="196" height="62" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="262" y="76" font-weight="600">make baseline</text>
+          <text x="262" y="94" fill="#857c69">low-risk evidence capture</text>
+
+          <path d="M442 83 L468 83" stroke="#b45309" stroke-width="1.4" marker-end="url(#a4)"/>
+          <rect x="472" y="52" width="196" height="62" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="488" y="76" font-weight="600">smoke tests</text>
+          <text x="488" y="94" fill="#857c69">WAN · fio storage · Nsight</text>
+
+          <path d="M668 83 L694 83" stroke="#b45309" stroke-width="1.4" marker-end="url(#a4)"/>
+          <rect x="698" y="52" width="182" height="62" rx="8" fill="#fdf3e3" stroke="#b45309"/>
+          <text x="714" y="76" font-weight="600">NCCL all-reduce</text>
+          <text x="714" y="94" fill="#7c3a06">multi-node via SLURM</text>
+        </g>
+        <!-- evidence bundle -->
+        <rect x="20" y="160" width="860" height="110" rx="12" fill="#e8f1f8" opacity="0.55"/>
+        <text x="40" y="188" font-size="10.5" fill="#1e5a8a" letter-spacing="2">EVERY RUN LEAVES AN EVIDENCE BUNDLE</text>
+        <g font-size="11" fill="#17130c">
+          <rect x="40" y="200" width="150" height="50" rx="7" fill="#fff" stroke="#e5e0d2"/><text x="54" y="222">SUMMARY.txt</text><text x="54" y="238" fill="#857c69">pass / fail / skip</text>
+          <rect x="206" y="200" width="150" height="50" rx="7" fill="#fff" stroke="#e5e0d2"/><text x="220" y="222">steps.tsv</text><text x="220" y="238" fill="#857c69">status · exit · duration</text>
+          <rect x="372" y="200" width="150" height="50" rx="7" fill="#fff" stroke="#e5e0d2"/><text x="386" y="222">curl stats</text><text x="386" y="238" fill="#857c69">headers · timing</text>
+          <rect x="538" y="200" width="160" height="50" rx="7" fill="#fff" stroke="#e5e0d2"/><text x="552" y="222">pip manifest</text><text x="552" y="238" fill="#857c69">checksums · file lists</text>
+          <rect x="714" y="200" width="150" height="50" rx="7" fill="#fff" stroke="#e5e0d2"/><text x="728" y="222">tool versions</text><text x="728" y="238" fill="#857c69">uv · python · curl</text>
+        </g>
+      </svg>
+      <figcaption>Each command targets a specific risk level, and every WAN/package smoke keeps a shareable evidence directory — comparable across runs, debuggable after failures.</figcaption>
+    </figure>
+
+    <div class="prose reveal">
+      <h2>What's in the toolkit</h2>
+      <p>Five focused scripts plus a Make interface, each with a <code>--help</code> screen:</p>
+    </div>
+
+    <ul class="feature-list reveal">
+      <li><b>Baseline audit</b> — captures what the cluster actually exposed at run time: GPU visibility, drivers, environment. Text artifacts, reviewable later.</li>
+      <li><b>WAN / package smoke</b> — times package installs and internet egress (uv, pip, curl), proxy- and mirror-aware, with full download manifests and checksums.</li>
+      <li><b>Storage smoke</b> — sequential and random behavior via <code>fio</code>, with tunable size and runtime for quick confidence checks vs. heavier passes.</li>
+      <li><b>Nsight Compute smoke</b> — validates non-root profiler access against a minimal CUDA vector-add, a notorious silent failure on managed clusters.</li>
+      <li><b>SLURM NCCL all-reduce template</b> — a multi-node collective-communications smoke with an overridable <code>nccl-tests</code> binary path.</li>
+    </ul>
+
+    <div class="term reveal">
+<span class="c"># the ladder, in practice</span>
+make test                                   <span class="c"># laptop-safe repo checks</span>
+make baseline BASELINE_OUTDIR=artifacts/baseline
+make wan-smoke WAN_OUTDIR=artifacts/wan-run1
+make fio-smoke TARGET_DIR=/data SIZE=4G RUNTIME=30
+make ncu-smoke
+sbatch examples/slurm/nccl_allreduce.sbatch  <span class="y"># 16-GPU collective smoke</span>
+    </div>
+
+    <div class="notes reveal">
+      <h3>Engineering notes</h3>
+      <p>
+        The design bias is <b>evidence over output</b>: a failed smoke produces one directory you can hand
+        to another engineer — config, versions, timings, checksums — rather than a scroll of terminal text.
+        That's what makes runs comparable and proxy/mirror debugging tractable.
+      </p>
+      <p>
+        Commands are explicitly tiered by blast radius, from "safe on any laptop" to "requires a working
+        multi-node SLURM environment" — the README literally answers "which command should I run?"
+        This grew out of real consulting: assessing OCI cluster performance and scheduling behavior under
+        SLURM and Kubernetes, where a repeatable diagnostics runbook saved the client from external
+        specialists.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="pager">
+  <div class="wrap">
+    <a href="trackrecord.html"><span class="lbl">Previous</span><span class="ttl">← TrackRecord</span></a>
+    <a class="next" href="ddp-training.html"><span class="lbl">Next project</span><span class="ttl">DDP Training →</span></a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Abdullah Sayed</span>
+    <span><a href="https://github.com/abdullahasayed" target="_blank" rel="noopener">github.com/abdullahasayed</a></span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

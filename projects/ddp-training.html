@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDP Training — 16-GPU distributed training on Kubernetes · Abdullah Sayed</title>
+<meta name="description" content="An end-to-end PyTorch DDP baseline: fine-tuning a stance classifier across 2 nodes × 8 NVIDIA B200 GPUs with torchrun on a Nebius Kubernetes cluster.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,8 88,29 88,71 50,92 12,71 12,29' fill='none' stroke='%23b45309' stroke-width='8'/></svg>">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="../index.html"><b>AS</b> · abdullah sayed</a>
+    <div class="nav-links">
+      <a href="../index.html#work">← All work</a>
+      <a href="../photography.html">Photography</a>
+      <a class="gh" href="https://github.com/abdullahasayed/DDP-Training" target="_blank" rel="noopener">repo ↗</a>
+    </div>
+  </div>
+</nav>
+
+<header class="p-hero">
+  <div class="wrap">
+    <p class="kicker">Project 05 · Distributed training</p>
+    <h1>DDP Training</h1>
+    <p class="lede">
+      An end-to-end <b>PyTorch Distributed Data Parallel</b> baseline on Kubernetes: fine-tuning a
+      transformer stance classifier across <b>2 nodes × 8 NVIDIA B200 GPUs</b> with
+      <code style="font-family:var(--mono); font-size:0.8em">torchrun</code> — from multi-arch container
+      build to artifact recovery off the cluster.
+    </p>
+
+    <div class="meta-band reveal">
+      <div class="meta-cell"><div class="k">Role</div><div class="v">Built &amp; run during GPU consulting at SimpliSolve</div></div>
+      <div class="meta-cell"><div class="k">Stack</div><div class="v">PyTorch DDP · torchrun · Kubernetes · Docker buildx · CUDA 12.8 · NCCL</div></div>
+      <div class="meta-cell"><div class="k">Task</div><div class="v">Stance classification — <code>tweet_eval / stance_hillary</code>, DistilRoBERTa</div></div>
+      <div class="meta-cell"><div class="k">Source</div><div class="v"><a href="https://github.com/abdullahasayed/DDP-Training" target="_blank" rel="noopener">DDP-Training</a></div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="facts">
+      <div class="fact reveal"><div class="fig">2×8</div><div class="cap">nodes × GPUs — a 16-GPU distributed run coordinated by torchrun rendezvous</div></div>
+      <div class="fact reveal"><div class="fig">B200</div><div class="cap">NVIDIA Blackwell targets — image built for CUDA 12.8 with sm_100 kernel support</div></div>
+      <div class="fact reveal"><div class="fig">3</div><div class="cap">labels: against / none / favor — public political stance data, no scraping or keys</div></div>
+    </div>
+
+    <div class="prose reveal">
+      <h2>Why it exists</h2>
+      <p>
+        Single-GPU fine-tuning is a solved tutorial; <b>multi-node</b> training is where real clusters
+        break. This project is the deliberately-scoped baseline you run before anything expensive:
+        a small model (DistilRoBERTa) on a public dataset, so every failure you hit is an
+        <i>infrastructure</i> failure — image architecture, GPU kernel compatibility, pod scheduling,
+        NCCL rendezvous — not a modeling one.
+      </p>
+      <p>
+        It was built while assessing cluster behavior for SimpliSolve: the same engagement that produced
+        the <a href="oci-cluster-evaluation.html">OCI Cluster Evaluation</a> toolkit. The classifier itself
+        connects back to the stance-analysis thread running through
+        <a href="trackrecord.html">TrackRecord</a>.
+      </p>
+    </div>
+
+    <figure class="diagram reveal">
+      <svg viewBox="0 0 900 330" xmlns="http://www.w3.org/2000/svg" fill="none" font-family="IBM Plex Mono, monospace">
+        <defs>
+          <marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#b45309"/>
+          </marker>
+        </defs>
+        <text x="20" y="30" font-size="10.5" fill="#7c3a06" letter-spacing="2">FROM LAPTOP TO 16 GPUS</text>
+        <!-- build stage -->
+        <g font-size="11.5" fill="#17130c">
+          <rect x="20" y="48" width="190" height="60" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="36" y="72" font-weight="600">docker buildx</text>
+          <text x="36" y="90" fill="#857c69">linux/amd64 · CUDA 12.8</text>
+          <path d="M210 78 L240 78" stroke="#b45309" stroke-width="1.4" marker-end="url(#a5)"/>
+          <rect x="244" y="48" width="170" height="60" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="260" y="72" font-weight="600">registry push</text>
+          <text x="260" y="90" fill="#857c69">pullable image tag</text>
+          <path d="M414 78 L444 78" stroke="#b45309" stroke-width="1.4" marker-end="url(#a5)"/>
+          <rect x="448" y="48" width="190" height="60" rx="8" fill="#fff" stroke="#e5e0d2"/>
+          <text x="464" y="72" font-weight="600">kubectl apply</text>
+          <text x="464" y="90" fill="#857c69">ns · svc · PVC · pods</text>
+        </g>
+        <!-- cluster: two nodes -->
+        <rect x="20" y="140" width="420" height="150" rx="12" fill="#e8f1f8" opacity="0.5"/>
+        <text x="38" y="166" font-size="10.5" fill="#1e5a8a" letter-spacing="2">NODE A — ddp-worker-0 · rank 0</text>
+        <g stroke="#1e5a8a" stroke-width="1.2" fill="#fff">
+          <rect x="38" y="180" width="42" height="42" rx="6"/><rect x="88" y="180" width="42" height="42" rx="6"/>
+          <rect x="138" y="180" width="42" height="42" rx="6"/><rect x="188" y="180" width="42" height="42" rx="6"/>
+          <rect x="38" y="230" width="42" height="42" rx="6"/><rect x="88" y="230" width="42" height="42" rx="6"/>
+          <rect x="138" y="230" width="42" height="42" rx="6"/><rect x="188" y="230" width="42" height="42" rx="6"/>
+        </g>
+        <text x="250" y="205" font-size="10.5" fill="#857c69">8 × B200</text>
+        <rect x="250" y="220" width="170" height="52" rx="8" fill="#fdf3e3" stroke="#b45309"/>
+        <text x="264" y="242" font-size="11" fill="#7c3a06" font-weight="600">PVC /outputs</text>
+        <text x="264" y="258" font-size="10.5" fill="#7c3a06">model saved on rank 0</text>
+
+        <rect x="460" y="140" width="420" height="150" rx="12" fill="#e8f1f8" opacity="0.5"/>
+        <text x="478" y="166" font-size="10.5" fill="#1e5a8a" letter-spacing="2">NODE B — ddp-worker-1</text>
+        <g stroke="#1e5a8a" stroke-width="1.2" fill="#fff">
+          <rect x="478" y="180" width="42" height="42" rx="6"/><rect x="528" y="180" width="42" height="42" rx="6"/>
+          <rect x="578" y="180" width="42" height="42" rx="6"/><rect x="628" y="180" width="42" height="42" rx="6"/>
+          <rect x="478" y="230" width="42" height="42" rx="6"/><rect x="528" y="230" width="42" height="42" rx="6"/>
+          <rect x="578" y="230" width="42" height="42" rx="6"/><rect x="628" y="230" width="42" height="42" rx="6"/>
+        </g>
+        <text x="690" y="205" font-size="10.5" fill="#857c69">8 × B200</text>
+        <text x="690" y="240" font-size="10.5" fill="#857c69">ephemeral /outputs</text>
+        <!-- rendezvous link -->
+        <path d="M440 215 L460 215" stroke="#b45309" stroke-width="2"/>
+        <text x="365" y="315" font-size="10.5" fill="#7c3a06">torchrun rendezvous via headless service · NCCL collectives across 16 ranks</text>
+      </svg>
+      <figcaption>Two worker pods, one headless service for rendezvous, one PVC for artifacts. Gradient all-reduce spans all 16 ranks every step.</figcaption>
+    </figure>
+
+    <div class="prose reveal">
+      <h2>The parts that actually bite</h2>
+      <p>
+        The repo's value is in the operational edges most tutorials skip. The image must be built
+        <code>--platform linux/amd64</code> from an Apple Silicon laptop or pods die with manifest-platform
+        errors. B200s require a PyTorch build with <code>sm_100</code> kernels — hence CUDA 12.8 + PyTorch
+        nightly, verified with a one-liner before anything touches the cluster. Only global rank 0 writes
+        the model, tokenizer, metrics, and run config to the PVC; a throwaway busybox pod recovers the
+        artifacts afterward.
+      </p>
+    </div>
+
+    <ul class="feature-list reveal">
+      <li><b>Reproducible runtime.</b> One Dockerfile pins the CUDA/PyTorch combination so every environment — laptop validation, registry, cluster — runs identical code.</li>
+      <li><b>Clean separation of concerns.</b> Build/push and <code>kubectl apply</code> can happen on different machines; the cluster only needs a manifest and a pullable tag.</li>
+      <li><b>Debugging runbook included.</b> ImagePullBackOff, platform mismatches, <code>sm_100</code> kernel errors, pending pods, DDP rendezvous timeouts — each mapped to its cause and fix.</li>
+      <li><b>A tuning ladder, not a dead end:</b> swap stance topics, scale epochs, upgrade to RoBERTa-base, then remove <code>NCCL_IB_DISABLE=1</code> and tune InfiniBand/RDMA once the baseline is trusted.</li>
+    </ul>
+
+    <div class="notes reveal">
+      <h3>Engineering notes</h3>
+      <p>
+        Baseline-first discipline: NCCL over IB/RDMA is deliberately disabled for the first run, so the
+        initial signal is "does distributed training work at all," decoupled from fabric tuning. Performance
+        comes after correctness.
+      </p>
+      <p>
+        Even the runbook's smallest entry earns its place — copy-pasted commands failing on hidden non-ASCII
+        spaces is exactly the kind of thing that costs an hour on a cluster billing by the minute.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="pager">
+  <div class="wrap">
+    <a href="oci-cluster-evaluation.html"><span class="lbl">Previous</span><span class="ttl">← OCI Cluster Evaluation</span></a>
+    <a class="next" href="../index.html#work"><span class="lbl">Back to</span><span class="ttl">All work →</span></a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Abdullah Sayed</span>
+    <span><a href="https://github.com/abdullahasayed" target="_blank" rel="noopener">github.com/abdullahasayed</a></span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>
